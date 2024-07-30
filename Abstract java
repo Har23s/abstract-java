@@ -1,0 +1,78 @@
+package lab;
+import java.util.Scanner;
+
+interface Personal {
+	void personalDetails();
+}
+
+interface Official {
+	void officialDetails();
+}
+
+abstract class Person implements Personal, Official {
+	public String name;
+	public String address;
+	public long phone;
+
+	public Person(String name, String address, long phone) {
+    	this.name = name;
+    	this.address = address;
+    	this.phone = phone;
+	}
+}
+
+class Employee extends Person {
+	private int empid;
+	private String company;
+	private String designation;
+
+	public Employee(String name, String address, long phone, int empid, String company, String designation) {
+    	super(name, address, phone);
+    	this.empid = empid;
+    	this.company = company;
+    	this.designation = designation;
+	}
+
+	public void personalDetails() {
+    	System.out.println("Name : " + this.name);
+    	System.out.println("Address : " + this.address);
+    	System.out.println("Phone : " + this.phone);
+	}
+
+	public void officialDetails() {
+    	System.out.println("Empid : " + this.empid);
+    	System.out.println("Company : " + this.company);
+    	System.out.println("Designation : " + this.designation);
+	}
+}
+
+public class firstjava {
+	public static void main(String[] args) {
+    	Scanner sc = new Scanner(System.in);
+
+    	System.out.print("Enter Your Name : ");
+    	String name = sc.nextLine();
+
+    	System.out.print("Enter Your Address : ");
+    	String address = sc.nextLine();
+
+    	System.out.print("Enter Your Phone Number : ");
+    	long phone = sc.nextLong();
+
+    	System.out.print("Enter your Id: ");
+    	int id = sc.nextInt();
+    	sc.nextLine();  // Consume newline left-over
+
+    	System.out.print("Enter Your Company name : ");
+    	String company = sc.nextLine();
+
+    	System.out.print("Enter your designation: ");
+    	String designation = sc.nextLine();
+
+    	Employee emp = new Employee(name, address, phone, id, company, designation);
+    	emp.personalDetails();
+    	emp.officialDetails();
+
+    	sc.close();
+	}
+}
